@@ -7,7 +7,7 @@
   @mv /home/nginx/.ssh/id_rsa.pub /home/git/admin.pub
   @cd /home/git/ && gl-setup admin.pub
   @git clone git@localhost:gitolite-admin /home/nginx/admin
-  @
+  @like github: git clone git@hostname:username/repo.git
 */
 define('GIT_PATH', '/home/nginx');
 function git_username($username)
@@ -16,7 +16,7 @@ function git_username($username)
 }
 function git_url($username, $repo)
 {
-    return "git@git.yunall.net:".git_username($username)."/$repo.git";
+    return "git@hostname:".git_username($username)."/$repo.git";
 }
 function git_ready()
 {

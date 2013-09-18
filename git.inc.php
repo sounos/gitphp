@@ -88,7 +88,7 @@ function git_key_rebuild($username, $keys)
             foreach($keys as $k => $key)
             {
                 $filename = "keydir/".$username."@$k.pub";
-                file_put_contents($dir."/$filename", $key->pubkey."\n");
+                file_put_contents($dir."/$filename", $key."\n");
                 $list .= " '$filename'";
             }
             $cmd = "git add $list > /dev/null";

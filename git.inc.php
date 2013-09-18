@@ -56,14 +56,14 @@ function git_useradd($username)
     return false;
 }
 
-function git_rebuild($username, $apps)
+function git_repos_rebuild($username, $repos)
 {
-    if(($username = git_username($username)) && count($apps) > 0 && ($dir = git_ready()))
+    if(($username = git_username($username)) && count($repos) > 0 && ($dir = git_ready()))
     {
         $conf = "";
-        foreach($apps as $k => $appname)
+        foreach($repos as $k => $repo)
         {
-            $conf .= "repo\t$username/$appname\n\tC\t=\tadmin\n\tRW+\t=\t$username\n";
+            $conf .= "repo\t$username/$repo\n\tC\t=\tadmin\n\tRW+\t=\t$username\n";
         }
         file_put_contents($dir."/conf/users/$username.conf", $conf);
         $cmd = "git commit -a -m 'updated $username.conf' > /dev/null"
@@ -86,8 +86,7 @@ function git_key_rebuild($username, $keys)
         {
             foreach($keys as $k => $key)
             {
-                $keyname = $key->keyname;
-                $filename = "keydir/".$username."@$keyname.pub";
+                $filename = "keydir/".$username."@$k.pub";
                 file_put_contents($dir."/$filename", $key->pubkey."\n");
                 $list .= " '$filename'";
             }

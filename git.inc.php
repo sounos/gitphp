@@ -1,10 +1,11 @@
 <?php
 /*
-* @useradd -d /home/nginx nginx
+  @make sure installed gitolite
+  @useradd -d /home/nginx nginx
   @ssh-keygen -t rsa -b 4096 
   @user add -d /home/git git
   @mv /home/nginx/.ssh/id_rsa.pub /home/git/admin.pub
-  @cd /home/git/ && gl-setup.php admin.pub
+  @cd /home/git/ && gl-setup admin.pub
   @git clone git@localhost:gitolite-admin /home/nginx/admin
   @
 */
